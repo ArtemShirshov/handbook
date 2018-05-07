@@ -25,7 +25,7 @@
 Если вы прокидываете dispatch внутрь компонанта только для того чтобы обернуть в него actionCreator, можно использовать bindActionCreators.
 
 **Пример:**
-```
+```javascript
 // actions.js
 export const removeTodo = (id) => ({
     type: 'REMOVE_TODO',
