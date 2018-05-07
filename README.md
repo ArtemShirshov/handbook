@@ -5,14 +5,19 @@
 #### 1.2. Для проекта GlassesUSA используем только цвета из стайл гайда в avocode и создаем переменные места использования.
 #### 1.3. Используем idx для обращения к свойствам с глубокой вложенность. Удаляем после Babel 7.
 #### 1.4. Создавая новый контейнер, стараемся дробить на реиспользуемые компоненты (кладем их в __helpers) компоненты которые пренадлежат только этому контейнеру кладем в папку с его именем в components (плоско, без вложенностей). Пример:
-
-	components/
-	  reviews/
-        reviewsItem/
-        reviewsList/
-	containers/
-	  reviews/
-		
+```
+components/
+  product/
+    productItem/
+    productList/
+    productListTitle/
+  category/
+    categoryItem/
+    categoryTitle/
+containers/
+    product/
+    category/
+```
 #### 1.5. Истиной в код стайле является Prettier.
 #### 1.6. Название файлов пишем через camelCase.
 	
@@ -47,3 +52,7 @@
 ## 7. Стили
 #### 7.1. Используем react-responsive в связке с custom-media postCSS плагином для адаптивного дизайна.
 		
+---
+## Разное
+ - Телеграм канал с итогами после митапов https://t.me/joinchat/AAAAAEoHz9mmtzlylBkIIg
+ - Телеграм канал с полезными ссылками https://t.me/joinchat/AAAAAEoHz9mmtzlylBkIIg
