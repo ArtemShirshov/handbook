@@ -66,11 +66,13 @@ export const TodoItemConnected = connect(null, mapDispatchToProps)(TodoItem);
 
 ## 5. Селекторы
 #### 5.1. В селекторах созданых с помощью createSelector, мы тестируем только результирующую функцию(последний аргумент). Для этого используем метод "resultFunc()" у созданного селектора. Пример:
-	test('getCartItemOptions', () => {
-	  const quoteItem = {test: '100500'};
-	  const result = cartSelectors.getCartItemOptions.resultFunc(quoteItem);
-	  expect(result).toEqual(CustomOptionsFixture);
-	});
+```javascript
+test('getCartItemOptions', () => {
+  const quoteItem = {test: '100500'};
+  const result = cartSelectors.getCartItemOptions.resultFunc(quoteItem);
+  expect(result).toEqual(CustomOptionsFixture);
+});
+```
 #### 5.2. Осторожно использовать selectors with props и внимательно читать документацию.
 
 ## 6. Flow
