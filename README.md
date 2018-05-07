@@ -44,7 +44,7 @@ const TodoItem = ({remove, id, text}) => (
     </div>
 );
 const mapDispatchToProps = dispatch => 
-    bindActionCreators({ remove: removeTodo }, disbatch);
+    bindActionCreators({ remove: removeTodo }, dispatch);
     
 export const TodoItemConnected = connect(null, mapDispatchToProps)(TodoItem);
 ```
