@@ -26,7 +26,34 @@ containers/
 #### 2.2. Не используем default экспорт в компонентах.
 
 ## 3. Redux
-#### 3.1. В законнекченных компонентых используем mapStateToProps и mapDispatchToProps.
+#### 3.1. В законнекченных компонентах используем mapStateToProps и mapDispatchToProps.
+Если вы прокидываете dispatch внутрь компонанта только для того чтобы обернуть в него actionCreator, можно использовать bindActionCreators.
+
+**Пример:**
+```javascript
+// actions.js
+export const removeTodo = (id) => ({
+    type: 'REMOVE_TODO',
+    payload: id,
+});
+
+// TodoItem.jsx
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { removeTodo } from './actions'
+
+const TodoItem = ({remove, id, text}) => (
+    <div>
+        <p>{text}</p>
+        <button onClick={() => { remove(id)} }>remove</button>
+    </div>
+);
+const mapDispatchToProps = dispatch => 
+    bindActionCreators({ remove: removeTodo }, dispatch);
+    
+export const TodoItemConnected = connect(null, mapDispatchToProps)(TodoItem);
+```
+
 #### 3.2. Рядом с редьюсерами создаем файл с типом.
 #### 3.3. Рядом с редьюсерами создаем файл с фикстурой.
 #### 3.4. Создавать InitialState в соответствии Flow type редюсера.
