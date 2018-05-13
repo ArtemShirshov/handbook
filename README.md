@@ -60,7 +60,7 @@ export const TodoItemConnected = connect(null, mapDispatchToProps)(TodoItem);
 #### 3.5. Не сохранять полностью весь payload, а выбирать необходимые данные.
 #### 3.6. Для connected компонентов используем имя ComponentNameConnected.
 #### 3.7. Для типов экшенов создаем константы.
-```
+```javascript
 export const PRODUCT = {
     GET_PRODUCT: 'PRODUCT@GET_PRODUCT'
 }
