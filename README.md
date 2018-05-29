@@ -83,6 +83,7 @@ test('getCartItemOptions', () => {
 
 ## 6. Flow
 #### 6.1. Имена для типов даем через CamelCase + Type. Пример: CriteoEventType.
+#### 6.2. Для глобального State в компонентах, селекторах и т.д. исползуем глобальный тип ApplicationStoreType.
 	
 ## 7. Стили
 #### 7.1. Используем react-responsive в связке с custom-media postCSS плагином для адаптивного дизайна.
