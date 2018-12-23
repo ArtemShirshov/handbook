@@ -137,7 +137,7 @@ test('getCartItemOptions', () => {
 
 * `fetchSomething` - fetch **remote** data (`fetchQuote()`), not **get**.
 * `updateSomething` - update **remote** data (`updateCartItem(productId, cartItem)`).
-* `deleteSomething` - delete **remote** data (`deleteCartItem(productId)`).
+* `removeSomething` - remove **remote** data (`removeCartItem(productId)`).
 * `addSomething` - add/create something (`addToCart(productId)`).
 * `setSomething` - update **local** store item to new value (`setPageNumber(page)`).
 * `clearSomething` - clear (delete) **local** store item (`clearCategoryItems()`).
@@ -149,6 +149,7 @@ test('getCartItemOptions', () => {
 #### 9.3 Predictions
 
 * `isSomethingActive` - checking the state of the local item.
+* `hasSomething` - checking the existing of the local item.
 
 ---
 ## Разное
