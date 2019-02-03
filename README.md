@@ -85,7 +85,7 @@ test('getCartItemOptions', () => {
 ## 6. Flow
 #### 6.1. Имена для типов даем через CamelCase + Type. Пример: CriteoEventType.
 #### 6.2. Для глобального State в компонентах, селекторах и т.д. исползуем глобальный тип ApplicationStoreType.
-	
+
 ## 7. Стили
 #### 7.1. Используем react-responsive в связке с custom-media postCSS плагином для адаптивного дизайна.
 #### 7.2. В стилях используем наши переменные: цвет, начертание шрифта (наши цифровые значения - 400, 700 и т.д.), название шрифта и т.д. Переменные для font-style удаляем (normal, italic).
@@ -99,7 +99,7 @@ test('getCartItemOptions', () => {
 Так лучше:
 Почему переменная названа myVar, а не myAwesomeVar? Название myAwesomeVar подошло бы лучше, т.к. оно лучше отражает то, для чего заведена переменная. Предлагаю записать это правило в документацию.
 
-#### 8.2. Замечания должны быть конструктивными. 
+#### 8.2. Замечания должны быть конструктивными.
 Замечания типа “бред”, “трэш”, “плохо” — это не наша история. Считаешь, что плохо — объясни, что именно плохо и предложи вариант, как сделать лучше. Замечания всегда должны быть конструктивными.
 
 #### 8.3. Не закрывай не глядя.
@@ -123,6 +123,34 @@ test('getCartItemOptions', () => {
 Если менее опытный коллега задал тебе вопрос, не надо отправлять его читать матчасть. Почему-то нам свойственно забывать, что мы тоже когда-то учились.
 
 #### 8.8. Комментарии не соблюдающий выше изложенные правила может игнорироваться или даже удаляться. Вплоть до игнорирования needs work от этого человека.
+
+## 9. Имена методов (функций)
+Называть вещи своими именами, чтобы было понятно что происходит здесь и сейчас без ссылок на другие файлы, поиск вхождений и констант - пусть они останутся исключительно для помощи написания, а не чтения. **Не называть** функцию `setProduct` для получения данных с сервера, не сокращать до однобуквенных значений, не расписывать больше необходимого (`getWindowProductColorsSelector` → `getProductColors`).
+
+> * Имена методов, представляют собой глаголы или глагольные словосочетания: fetchProduct, getProduct, setProduct и т.д.
+> * Используйте имена из пространства задачи.
+> * Используйте имена из пространства решения. Не стесняйтесь использовать термины из области информатики, названия алгоритмов и паттернов.
+> * Описывайте все, что метод выполняет. Но без фанатизма: getWindowProductColorsSelector → getProductColors или getColors.
+
+*Clean Code: A Handbook of Agile Software Craftsmanship. Robert Martin*
+
+#### 9.1 Actions
+
+* `fetchSomething` - fetch **remote** data (`fetchQuote()`), not **get**.
+* `updateSomething` - update **remote** data (`updateCartItem(productId, cartItem)`).
+* `removeSomething` - remove **remote** data (`removeCartItem(productId)`).
+* `addSomething` - add/create something (`addToCart(productId)`).
+* `setSomething` - update **local** store item to new value (`setPageNumber(page)`).
+* `clearSomething` - clear (delete) **local** store item (`clearCategoryItems()`).
+
+#### 9.2 Selectors
+
+* `getSomething` - get from **local** store (`getQuote(store)`).
+
+#### 9.3 Predictions
+
+* `isSomethingActive` - checking the state of the local item.
+* `hasSomething` - checking the existing of the local item.
 
 ---
 ## Разное
