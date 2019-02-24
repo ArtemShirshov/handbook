@@ -3,7 +3,7 @@
 ## 1. Общее
 #### 1.1. Чтобы смерджить pull request надо набрать минимум 2 святых и 3 обычных апрува.
 #### 1.2. Для проекта GlassesUSA используем только цвета из стайл гайда в avocode и создаем переменные места использования.
-#### 1.3. Используем idx для обращения к свойствам с глубокой вложенность. Удаляем после Babel 7.
+#### 1.3. Используем ramda функцию [pathOr](https://ramdajs.com/docs/#pathOr) для обращения к свойствам с глубокой вложенность.
 #### 1.4. Создавая новый контейнер, стараемся дробить на реиспользуемые компоненты (кладем их в __helpers) компоненты которые пренадлежат только этому контейнеру кладем в папку с его именем в components (плоско, без вложенностей). Пример:
 ```
 components/
@@ -27,7 +27,10 @@ containers/
 
 ## 3. Redux
 #### 3.1. В законнекченных компонентах используем mapStateToProps и mapDispatchToProps.
-Если вы прокидываете dispatch внутрь компонанта только для того чтобы обернуть в него actionCreator, можно использовать bindActionCreators.
+В функцию connect() mapDispatchToProps можно передать как обычный объект, redux сам обернет его в dispatch.
+Это [рекомендация](https://react-redux.js.org/using-react-redux/connect-mapdispatch#defining-mapdispatchtoprops-as-an-object) официальной документации по redux.
+
+> Мы рекомендуем всегда использовать форму mapDispatchToProps “object shorthand”, если у вас нет конкретной причины настраивать поведение диспетчеризации.
 
 **Пример:**
 ```javascript
@@ -38,20 +41,24 @@ export const removeTodo = (id) => ({
 });
 
 // TodoItem.jsx
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { removeTodo } from './actions'
+import {connect} from 'react-redux';
+import {removeTodo} from './actions'
+import type {ApplicationStoreType} from 'constants/flow/flowTypes';
 
-const TodoItem = ({remove, id, text}) => (
+const TodoItem = ({removeTodo, id, text}) => (
     <div>
         <p>{text}</p>
-        <button onClick={() => { remove(id)} }>remove</button>
+        <button onClick={() => { removeTodo(id)} }>remove</button>
     </div>
 );
-const mapDispatchToProps = dispatch => 
-    bindActionCreators({ remove: removeTodo }, dispatch);
+
+const mapStateToProps = (store: ApplicationStoreType) => ({
+	text: store.text,
+})
+
+const mapDispatchToProps = {removeTodo}
     
-export const TodoItemConnected = connect(null, mapDispatchToProps)(TodoItem);
+export const TodoItemConnected = connect(mapStateToProps, mapDispatchToProps)(TodoItem);
 ```
 
 #### 3.2. Рядом с редьюсерами создаем файл с типом.
