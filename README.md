@@ -67,6 +67,23 @@ export const TodoItemConnected = connect(null, mapDispatchToProps)(TodoItem);
 #### 4.2. Больше не используем nock, sinon для тестов.
 #### 4.3. Запрещается понижать проценты в coverageThreshold.
 #### 4.4. Разрешается повышать проценты только до ближайшего целого числа
+#### 4.5. При написании теста для функции mapStateToProps делать его интеграционным т.е. создать стор с существующими редьюсерами
+**Пример:**
+```javascript
+// component.test.js
+import {createStore} from 'redux';
+
+import reducers from 'reducers';
+
+import {mapStateToProps} from './component';
+
+test('mapStateToProps', () => {
+    const store = createStore(reducers);
+    const props = mapStateToProps(store.getState());
+    
+    expect(props).toEqual({prop1: '', prop2: false});
+});
+```
 
 ## 5. Селекторы
 #### 5.1. В селекторах созданых с помощью createSelector, мы тестируем только результирующую функцию(последний аргумент). Для этого используем метод "resultFunc()" у созданного селектора. Пример:
