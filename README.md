@@ -67,6 +67,28 @@ export const TodoItemConnected = connect(null, mapDispatchToProps)(TodoItem);
 #### 4.2. Больше не используем nock, sinon для тестов.
 #### 4.3. Запрещается понижать проценты в coverageThreshold.
 #### 4.4. Разрешается повышать проценты только до ближайшего целого числа
+#### 4.5. Для написание интеграционных тестов используется react-testing-library. 
+##### 4.5.1 Мокается в идеале только axios.
+##### 4.5.2 Интеграционные тесты должны писаться с учетом тест кейсов написанных qa-инженерами внутри команды. Пример написание
+```javascript
+describe('GUSA-T300 Wizard. Check prescription block', () => {
+    it('We should hide Prescription block if we choose Non-prescription usage', async () => {
+        const {store} = configureStore(defaultWizardStore);
+
+        const {getByText, getByTestId} = renderComponent(store);
+
+        // by default we see Prescription block
+        expect(getByTestId('wizard').children).toHaveLength(6);
+        expect(getByText(/Enter your prescription/)).toMatchSnapshot();
+
+        // try to click Non-prescription usage for hide Prescription block
+        fireEvent.click(getByText(/Non-prescription/));
+
+        // we don't see Prescription block
+        expect(getByTestId('wizard').children).toHaveLength(5);
+    });
+});
+```
 
 ## 5. Селекторы
 #### 5.1. В селекторах созданых с помощью createSelector, мы тестируем только результирующую функцию(последний аргумент). Для этого используем метод "resultFunc()" у созданного селектора. Пример:
