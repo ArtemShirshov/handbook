@@ -171,6 +171,20 @@ test('getCartItemOptions', () => {
 * `isSomethingActive` - checking the state of the local item.
 * `hasSomething` - checking the existing of the local item.
 
+## 10. Работа с фичами
+#### 10.1. Новые фичи закрываются флагом.
+#### 10.2. Новые фичи кладутся в папку features (она лежит на одном уровне с папкой modules). Внутри этой папки создается папка для фичи.
+#### 10.3. Структура папок для новой фичи должна выглядеть следующим образом:
+```javascript
+/features
+	/nameForFeature
+		/components
+		/sagas
+		/selectors
+		/store
+```
+
+
 ---
 ## Разное
  - Телеграм канал с итогами после митапов https://t.me/joinchat/AAAAAEoHz9mmtzlylBkIIg
